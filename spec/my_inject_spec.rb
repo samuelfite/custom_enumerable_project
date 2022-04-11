@@ -12,6 +12,12 @@ RSpec.describe Enumerable do
       expect(enumerable.my_inject(initial_value) { |sum, value| sum + value }).to eq 88
     end
 
+    it 'reduces an enumerable to a single value' do
+      initial_value = 1
+      # calculates the sum of the elements of the enumerable array
+      expect(enumerable.my_inject(initial_value) { |prod, value| prod * value }).to eq 2227680
+    end
+
     it 'can be used to calculate the product' do
       product = enumerable.my_inject(1) { |prod, value| prod * value }
 

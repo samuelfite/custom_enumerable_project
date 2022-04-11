@@ -72,14 +72,19 @@ module Enumerable
       return count
    end
 
-   def my_map()
-      if not block_given?
+   # take a proc
+   def my_map(given_proc=nil)
+      if not block_given? and not given_proc
          return self
       end
       ary = []
       index = 0
       while index < self.length do 
-         ary.push( yield self[index] )
+         if block_given?
+            ary.push( yield self[index] )
+         else
+            ary.push( given_proc.call( self[index] ) )
+         end
          index += 1
       end
       return ary

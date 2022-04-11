@@ -14,6 +14,11 @@ RSpec.describe Enumerable do
       it 'returns an array with the same size as the enumerable' do
         expect(enumerable.my_map { |value| value * 2 }.size).to eq enumerable.size
       end
+
+   it 'it does the same with a proc' do
+        a_proc = Proc.new { |value| value * 2 }
+        expect(enumerable.my_map( a_proc )).to eq([2, 2, 4, 6, 10, 16, 26, 42, 68])
+      end
     end
 
     context 'when called with &:symbol' do
